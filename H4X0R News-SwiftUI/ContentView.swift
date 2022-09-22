@@ -8,14 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @ObservedObject var networkManager = NetworkManager()
     var body: some View {
         NavigationView{
-            List(posts) { post in
+            List(networkManager.posts) { post in
                 Text(post.title)
             }
             .navigationBarTitle("H4X0R News")
         }
         
+        .onAppear(perform: networkManager.fetchData)
       
      
     }
@@ -27,11 +30,4 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-
-let posts = [
-    Post(id: "1", title: "Hello1"),
-    Post(id: "2", title: "Hello2"),
-    Post(id: "3", title: "Hello3"),
-    Post(id: "4", title: "Hello4"),
-    Post(id: "5", title: "Hello5")
-]
+ 
