@@ -13,14 +13,23 @@ struct ContentView: View {
     var body: some View {
         NavigationView{
             List(networkManager.posts) { post in
-                Text(post.title)
+                NavigationLink(destination: DetailView(url: post.url)) {
+                    HStack{
+                        Text(post.points.description + " points")
+                            .font(Font.system(size: 15, weight: .ultraLight))
+                        
+                        Text(post.title)
+                        
+                    }
+                }
+                
             }
             .navigationBarTitle("H4X0R News")
         }
         
         .onAppear(perform: networkManager.fetchData)
-      
-     
+        
+        
     }
 }
 
@@ -30,4 +39,4 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
- 
+
