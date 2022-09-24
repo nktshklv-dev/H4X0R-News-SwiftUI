@@ -30,6 +30,7 @@ struct ContentView: View {
         .onAppear(perform: networkManager.fetchData)
         
         
+        
     }
 }
 
